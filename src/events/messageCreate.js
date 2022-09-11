@@ -1,7 +1,3 @@
-const Discord = require("discord.js")
-const fs = require('fs');
-const { MessageEmbed, Collection } = require('discord.js');
-
 module.exports = {
     name: "messageCreate",
     run: async function runAll(bot, message) {

@@ -1,6 +1,10 @@
 const { getFiles } = require("../util/functions")
 const Discord = require('discord.js')
 const fs = require("fs")
+const commands = require("./commands")
+const { Routes } = require('discord-api-types/v10');
+const { client, REST } = require('discord.js');
+
 
 module.exports = (bot, reload) => {
     const {client} = bot
@@ -49,4 +53,7 @@ function initEvents(bot) {
     client.on("messageCreate", (message) => {
         triggerEventHandler(bot, "messageCreate", message)
     })
+
+
 }
+

@@ -21,9 +21,9 @@ const client = new Discord.Client({ intents: [
 
 let bot = {
     client,
-    prefix: "p.",
-    owners: [process.env.OWNER]
 }
+
+const guildID = "950932792651423775"
 
 client.on("ready", () => {
     // Get all ids of the servers
@@ -43,38 +43,14 @@ client.loadEvents(bot, false)
 client.loadCommands(bot, false)
 client.loadSlashCommands(bot, false)
 
-client.on("interactionCreate", (interaction) => {
-    if (!interaction.isCommand()) return
-    if (!interaction.inGuild()) return interaction.reply("This command can only be used in a server")
+client.on("ready", async () => {
+    const guild = client.guilds.cache.get(guildID)
+    if (!guild)
+        return console.error("Target guild not found")
 
-    const slashcmd = client.slashcommands.get(interaction.commandName)
-
-    if (!slashcmd) return interaction.reply("Invalid slash command")
-
-    if (slashcmd.perms && !interaction.member.permissions.has(slashcmd.perm))
-        return interaction.reply("You do not have permission for this command")
-
-        slashcmd.run(client, interaction)
-
-})
-
-module.exports = bot
-
-//message logger
-client.on('messageCreate', messageCreate => {
-    console.log(`[${messageCreate.author.tag}]: ${messageCreate.content}`);
-})
-
-//deleted message logger
-const logChannelID= "1018484190364319754"
-  client.on("messageDelete", (messageDelete) => {
-    client.channels.cache.get(logChannelID).send(`${messageDelete.author.tag}'s Message: "${messageDelete.content}" was deleted.`)
-});
-
-client.on("messageCreate", (message) => {
-    if (message.content == "canyoupleasework"){
-        message.reply("no")
-    }
+    await guild.commands.set([...client.slashcommands.values()])
+    console.log('Successfully loaded in ${client.slashcommands.size} slash commands')
+    process.exit(0);
 })
 
 

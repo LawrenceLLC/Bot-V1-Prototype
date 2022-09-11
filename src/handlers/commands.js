@@ -1,5 +1,3 @@
-const { readdirSync } = require('fs');
-const Discord = require('discord.js')
 const { getFiles } = require("../util/functions")
 const fs = require("fs")
 
