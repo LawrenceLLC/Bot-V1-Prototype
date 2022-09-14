@@ -10,11 +10,11 @@ const { Player } = require("discord-player")
 const LOAD_SLASH = process.argv[2] == "load"
 
 const client = new Discord.Client({ intents: [
-    GatewayIntentBits.Guilds,
+    	GatewayIntentBits.Guilds,
 	GatewayIntentBits.GuildMessages,
 	GatewayIntentBits.MessageContent,
 	GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildVoiceStates
+    	GatewayIntentBits.GuildVoiceStates
     ] 
 })
 
