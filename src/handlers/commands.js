@@ -4,7 +4,7 @@ const fs = require("fs")
 module.exports = (bot, reload) => {
     const {client} = bot 
 
-    fs.readdirSync("./src/commands").forEach((category) => {
+    fs.readdirSync("./src/commands").forEach(() => {
         //let commands = getFiles("./src/commands/", ".js")
         let commands = getFiles(`./src/commands/`, ".js")
         commands.forEach((f) => {

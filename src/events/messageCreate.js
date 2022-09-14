@@ -5,10 +5,8 @@ module.exports = {
 
         if (!message.guild)
             return
-
         if (message.author.bot)
             return
-
         if (!message.content.startsWith(prefix))
             return
 
@@ -43,5 +41,5 @@ module.exports = {
             else
                 console.error(err)
         }
-    } 
-}
+    },
+};

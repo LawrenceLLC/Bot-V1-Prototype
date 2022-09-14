@@ -1,14 +1,7 @@
 const { getFiles } = require("../util/functions")
-const Discord = require('discord.js')
-const fs = require("fs")
-const commands = require("./commands")
-const { Routes } = require('discord-api-types/v10');
-const { client, REST } = require('discord.js');
-
 
 module.exports = (bot, reload) => {
     const {client} = bot
-
     let events = getFiles("./src/events/", ".js")
 
     if (events.length === 0){

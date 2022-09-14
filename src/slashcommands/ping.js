@@ -1,24 +1,17 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
 	data: new SlashCommandBuilder()
-	.setName('ping')
-	.setDescription('Checks response latency'),
-	category: 'info',
-	usage: 'help',
+    .setName("ping")
+    .setDescription("Replies with 'Pong!' and checks the latency"),
+	isDMAllowed: true,
 	isDangerous: false,
 	mainServerOnly: false,
 	isHidden: false,
-    permissions: [],
-    devOnly: false,
 	aliases: ['delay', 'latency'],
 	cooldown: 5,
-	
-	async execute(interaction) {
-		const msg = await interaction.reply('Pinging...');
-		msg.edit(`Latency is: ${Math.floor(msg.createdAt - message.createdAt)}ms`);
-	}
-
+    run: async ({ client, interaction }) => {
+        const msg = await interaction.editReply('Pinging...');
+		msg.edit(`Pong!\nLatency: ${Math.floor(msg.createdAt - interaction.createdAt)}ms\nAPI Latency (Bot): ${client.ws.ping}ms`);  
+    },
 };
-
-module.exports.name = "ping"
